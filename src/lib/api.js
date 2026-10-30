@@ -1,9 +1,9 @@
-const BASE = import.meta.env.VITE_API_URL;
+const BASE = `${import.meta.env.VITE_API_URL}/api/v1`;
 const TOKEN_KEY = 'token';
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 
-export const setToken = (token) => 
+export const setToken = (token) =>
     token ? localStorage.setItem(TOKEN_KEY, token) : localStorage.removeItem(TOKEN_KEY);
 
 export async function api(path, { method = 'GET', body } = {}) {
@@ -14,7 +14,7 @@ export async function api(path, { method = 'GET', body } = {}) {
         headers: {
             'Content-Type': 'application/json',
             apikey: import.meta.env.VITE_API_KEY,
-            ...(token && { Authorization: `Bearer ${token}`}),
+            ...(token && { Authorization: `Bearer ${token}` }),
         },
         body: body ? JSON.stringify(body) : undefined,
     });
