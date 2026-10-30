@@ -1,11 +1,11 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import MessagePage from './pages/MessagePage';
 
 function Protected({ children }) {
     const { user } = useAuth();
-    return user ? children : <Navigate to="/login" replace />
+    return user ? children : <Navigate to="/login" replace />;
 }
 
 export default function App() {
@@ -13,16 +13,17 @@ export default function App() {
 
     return (
         <Routes>
-            <Route 
+            <Route
                 path="/login"
-                element={user ? <Navigate to="/message" replace /> : <LoginPage /> }
+                element={user ? <Navigate to="/messages" replace /> : <LoginPage />}
             />
-            <Route 
-                path="/message"
+            <Route
+                path="/messages"
                 element={<Protected><MessagePage /></Protected>}
             />
             <Route 
-                path="*" element={<Navigate to="/message" replace />}
+                path="*" 
+                element={<Navigate to="/messages" replace />} 
             />
         </Routes>
     );
