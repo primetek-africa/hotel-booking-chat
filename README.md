@@ -68,6 +68,10 @@ npm run dev
 
 Create a `.env` file in the project root:
 
+```sh
+npm run env-var
+```
+
 ```env
 # Origin of the API (NOT including /api/v1). Used for REST calls and for the socket connection.
 # The API listens on the machine's network IP (see netConfig.js), not on localhost.
