@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useState } from 'react';
-import { api, getToken, setToken } from '../lib/api.js';
-import { disconnectSocket } from '../lib/socket.js';
+import { api, getToken, setToken } from '../lib/api';
+import { disconnectSocket } from '../lib/socket';
 
 const AuthContext = createContext(null);
 
@@ -10,7 +10,7 @@ function userFromToken() {
     if (!token) return null;
     try {
         const payload = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-        const claims =JSON.parse(atob(payload));
+        const claims = JSON.parse(atob(payload));
         if (claims.exp * 1000 < Date.now()) {
             setToken(null);
             return null;
